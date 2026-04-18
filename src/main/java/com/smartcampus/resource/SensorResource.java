@@ -3,7 +3,7 @@ package com.smartcampus.resource;
 import com.smartcampus.model.Room;
 import com.smartcampus.model.Sensor;
 import com.smartcampus.store.DataStore;
-
+import com.smartcampus.exception.LinkedResourceNotFoundException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -61,9 +61,9 @@ public class SensorResource {
         Room room = store.getRooms().get(sensor.getRoomId());
 
         if (room == null) {
-            return Response.status(422)
-                    .entity(Map.of("error", "Room '" + sensor.getRoomId() + "' does not exist. Cannot register sensor."))
-                    .build();
+            throw new LinkedResourceNotFoundException(
+                "Room '" + sensor.getRoomId() + "' does not exist. Cannot register sensor."
+            );
         }
 
         store.getSensors().put(sensor.getId(), sensor);

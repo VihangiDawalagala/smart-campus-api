@@ -1,5 +1,7 @@
 package com.smartcampus.resource;
 
+
+import com.smartcampus.exception.RoomNotEmptyException;
 import com.smartcampus.model.Room;
 import com.smartcampus.store.DataStore;
 
@@ -78,9 +80,9 @@ public class RoomResource {
         }
 
         if (!room.getSensorIds().isEmpty()) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity(Map.of("error", "Room '" + roomId + "' cannot be deleted because it still has sensors assigned."))
-                    .build();
+            throw new RoomNotEmptyException(
+                "Room '" + roomId + "' cannot be deleted because it still has sensors assigned."
+            );
         }
 
         store.getRooms().remove(roomId);
