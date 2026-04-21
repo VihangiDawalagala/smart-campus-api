@@ -60,7 +60,7 @@ git clone https://github.com/VihangiDawalagala/smart-campus-api.git
 cd smart-campus-api
 
 Step 2 — Build the Project
-   Option A — Terminal:    bashmvn clean package
+   Option A — Terminal:    mvn clean package
     
    Option B — NetBeans:    Clean and Build Project (Shift + F11)
 
@@ -117,6 +117,10 @@ curl -X DELETE http://localhost:8080/api/v1/rooms/LIB-301
 curl -X POST http://localhost:8080/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{"id":"FAKE-001","type":"CO2","status":"ACTIVE","currentValue":0.0,"roomId":"FAKE-999"}'
+
+📝 Demostration Video Link
+https://drive.google.com/file/d/1MonPv-bjLkb6GyzvdbTf1qQoqzPmj0FP/view?usp=drive_link
+
 
 📁 Project Structure
 com.smartcampus
